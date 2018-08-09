@@ -1,0 +1,38 @@
+#SKILL
+------------------------------------------------------------
+For to go to the main menu enter command -  "close"
+------------------------------------------------------------
+For to add new skill enter command - "add new skill"
+------------------------------------------------------------
+For to look all skills enter command - "look all skills"
+------------------------------------------------------------
+For delete skill by id enter command - "delete skill by id"
+------------------------------------------------------------
+For delete skill by name enter command - "delete skill by skillname"
+------------------------------------------------------------
+For skill update  by id enter command - "update skill by id"
+------------------------------------------------------------
+#ACCOUNT
+------------------------------------------------------------
+For to go to the main menu enter command -  "close"
+------------------------------------------------------------
+For to add new account enter command - "add new account"
+------------------------------------------------------------
+For to look all accounts enter command - "look all accounts"
+------------------------------------------------------------
+For delete account by id enter command - "delete account by id"
+------------------------------------------------------------
+#DEVELOPER
+------------------------------------------------------------
+For to go to the main menu enter command -  "close"
+------------------------------------------------------------
+For to add new developer enter command - "add new developer"
+------------------------------------------------------------
+For to look all developes enter command - "look all developes"
+------------------------------------------------------------
+For delete developer by id enter command - "delete developer by id"
+------------------------------------------------------------
+For delete developer by login enter command - "delete developer by login"
+------------------------------------------------------------
+For developer update  by id enter command - "update developer by id"
+------------------------------------------------------------
