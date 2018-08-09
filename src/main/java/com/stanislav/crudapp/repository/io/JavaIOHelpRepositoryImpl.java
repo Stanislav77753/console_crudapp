@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JavaIOHelpRepositoryImpl{
-    private String helpFilePath =  "src/main.java.com.stanislav.crudapp.resources/help.txt";
+    private String helpFilePath =  "src/main/java/com/stanislav/crudapp/resources/help.txt";
     private File help = new File(helpFilePath);
     public void writeData() {
 

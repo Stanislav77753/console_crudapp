@@ -1,0 +1,7 @@
+ID - 3
+LOGIN - log3
+PASSWORD - password3
+FIRSTNAME - stas
+LASTNAME - popovich
+SkillsId - 1
+Account ID - 1

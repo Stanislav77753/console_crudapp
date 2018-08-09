@@ -28,7 +28,7 @@ public class AccountService {
         javaIOAccountRepository.save(account);
     }
 
-    public void getAllAccounts() throws EmptyFileException {
+    public void lookAllAccounts() throws EmptyFileException {
         List<String> allAccountsFromFile = javaIOAccountRepository.getAccountsInListString();
         for(String stringAccount: allAccountsFromFile){
             System.out.println(stringAccount);
@@ -44,5 +44,8 @@ public class AccountService {
 
     public Account getAccountById(Long id) throws EmptyFileException {
         return javaIOAccountRepository.getById(id);
+    }
+    public List<Account> getAllAccounts() throws EmptyFileException {
+        return javaIOAccountRepository.getAll();
     }
 }

@@ -19,13 +19,14 @@ public class DeveloperService {
         try {
             List<String> allDeveloperFromFile = javaIODeveloperRepository.getDeveloperListString();
             for(String stringDeveloper: allDeveloperFromFile){
+                System.out.println(stringDeveloper);
                 String[] strArray = stringDeveloper.trim().split(";");
                 if(developer.getLogin().equals(strArray[1])){
                     throw new DeveloperAlreadyExistException("This developer already exist");
                 }
-                id++;
+                id = new Long(strArray[0]) + 1L;
             }
-        } catch (EmptyFileException emptyFileExecption) {
+        } catch (EmptyFileException emptyFileException) {
         }
         developer.setId(id);
         javaIODeveloperRepository.save(developer);
@@ -42,25 +43,20 @@ public class DeveloperService {
             System.out.print("Skills - ");
             Set<Skill> skill = developers.getSkills();
             for(Skill skills: skill){
-                System.out.print(skills.getName()+", ");
+                System.out.print(skills.getId()+", ");
             }
             System.out.println();
-            System.out.println("Account - " + developers.getAccount().getDeveloperData());
+            System.out.println("Account - " + developers.getAccount().getId());
         }
     }
 
-    public void deleteDeveloperById(Long id) throws EmptyFileException {
-        javaIODeveloperRepository.delete(new Developer(id, "", "", "", "", new HashSet<>(),
-                new Account(null, null)));
-    }
-
-    public void deleteDeveloperByLogin(String login) throws EmptyFileException {
-        javaIODeveloperRepository.delete(new Developer(null, login, "", "", "", new HashSet<>(),
-                new Account(null, null)));
+    public void deleteDeveloper(Developer developer) throws EmptyFileException {
+        javaIODeveloperRepository.delete(developer);
     }
 
     public void updateDeveloperById(Developer developer) throws EmptyFileException {
         javaIODeveloperRepository.update(developer);
     }
+
 
 }

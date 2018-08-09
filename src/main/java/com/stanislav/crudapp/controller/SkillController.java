@@ -5,6 +5,8 @@ import main.java.com.stanislav.crudapp.exceptions.SkillAlreadyExistException;
 import main.java.com.stanislav.crudapp.model.Skill;
 import main.java.com.stanislav.crudapp.service.SkillService;
 
+import java.util.List;
+
 public class SkillController {
     SkillService skillService = new SkillService();
 
@@ -13,7 +15,7 @@ public class SkillController {
     }
 
     public void lookAllSkills() throws EmptyFileException {
-        skillService.getAllSkills();
+        skillService.lookAllSkills();
     }
     public void deleteSkill(Skill skill) throws EmptyFileException {
         skillService.deleteSkill(skill);
@@ -24,5 +26,7 @@ public class SkillController {
     public Skill getSkillById(Long id) throws EmptyFileException {
         return skillService.getSkillById(id);
     }
-
+    public List<Skill> getAllSkills() throws EmptyFileException {
+        return skillService.getAllSkills();
+    }
 }

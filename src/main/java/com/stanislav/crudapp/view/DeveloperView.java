@@ -11,9 +11,7 @@ import main.java.com.stanislav.crudapp.model.Account;
 import main.java.com.stanislav.crudapp.model.Developer;
 import main.java.com.stanislav.crudapp.model.Skill;
 
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class DeveloperView {
     public void developerMenu() {
@@ -48,7 +46,8 @@ public class DeveloperView {
                     break;
                 case "delete developer by id":
                     try {
-                        developerController.deleteDeveloperById(ConsoleHelper.getIdFromConsole("developer"));
+                        developerController.deleteDeveloper(new Developer(ConsoleHelper.getIdFromConsole("developer"),
+                                null, null, null, null, null, null));
                     } catch (EmptyFileException emptyFileException) {
                         System.out.println(emptyFileException.getMessage());
                     } catch (CloseOperationException closeOperationException) {
@@ -57,7 +56,9 @@ public class DeveloperView {
                     break;
                 case "delete developer by login":
                     try {
-                        developerController.deleteDeveloperByLogin(ConsoleHelper.getStringFromConsole("login"));
+                        developerController.deleteDeveloper(new Developer(null,
+                                ConsoleHelper.getStringFromConsole("login"), null, null,
+                                null, null, null ));
                     } catch (EmptyFileException emptyFileException) {
                         System.out.println(emptyFileException.getMessage());
                     } catch (CloseOperationException closeOperationException) {
@@ -71,7 +72,8 @@ public class DeveloperView {
                         String password = ConsoleHelper.getStringFromConsole("password");
                         String firstName = ConsoleHelper.getStringFromConsole("firstName");
                         String lastName = ConsoleHelper.getStringFromConsole("lastName");
-                        developerController.updateDeveloperById(id,login,password,firstName,lastName,getSkill(),getAccount());
+                        developerController.updateDeveloperById(new Developer(id, login, password, firstName,
+                                lastName,getSkill(),getAccount()));
                     } catch (EmptyFileException emptyFileException) {
                         System.out.println(emptyFileException.getMessage());
                     }catch (CloseOperationException closeOperationException) {
@@ -87,18 +89,36 @@ public class DeveloperView {
 
     private Set<Skill> getSkill() throws CloseOperationException {
         SkillController skillController = new SkillController();
+        Set<Long> setId = new TreeSet<>();
         Set<Skill> skills = new HashSet<>();
         boolean flagSkill = true;
-        do {
-            try {
-                skills.add(skillController.getSkillById(ConsoleHelper.getIdFromConsole("skill")));
-            } catch (EmptyFileException e) {
-                e.printStackTrace();
-            } catch (CloseOperationException closeOperationException) {
-                System.out.println(closeOperationException.getMessage());
-                flagSkill = false;
+        try {
+            List<Skill> allSkills = skillController.getAllSkills();
+            do{
+                try {
+                    Long id = ConsoleHelper.getIdFromConsole("skill");
+                    boolean flagId = true;
+                    for (Skill skillFromList : allSkills) {
+                        if (skillFromList.getId().equals(id)) {
+                            setId.add(id);
+                            flagId = false;
+                            break;
+                        }
+                    }
+                    if(flagId){
+                        System.out.println("skill with id - " + id + " is not exist");
+                    }
+                }catch (CloseOperationException closeOperationException) {
+                    System.out.println(closeOperationException.getMessage());
+                    flagSkill = false;
+                }
+            }while (flagSkill);
+            for(Long id: setId){
+                skills.add(skillController.getSkillById(id));
             }
-        } while (flagSkill);
+        } catch (EmptyFileException e) {
+            System.out.println(e.getMessage());
+        }
         if (skills.isEmpty()) {
             throw new CloseOperationException("You didn't enter anyone skill");
         }
@@ -108,8 +128,22 @@ public class DeveloperView {
     private Account getAccount() throws CloseOperationException {
         AccountController accountController = new AccountController();
         Account account = null;
+        boolean flagAccount = true;
         try {
-            account = accountController.getAccountById(ConsoleHelper.getIdFromConsole("account"));
+            List<Account> allAccounts = accountController.getAllAccounts();
+            do{
+                Long id = ConsoleHelper.getIdFromConsole("account");
+                for(Account accountFromList: allAccounts) {
+                    if (accountFromList.getId().equals(id)) {
+                        account = accountController.getAccountById(id);
+                        flagAccount = false;
+                        break;
+                    }
+                }
+                if(flagAccount){
+                    System.out.println("account with id - " + id + " is not exist");
+                }
+            }while (flagAccount);
         } catch (EmptyFileException emptyFileException) {
             System.out.println(emptyFileException.getMessage());
         }

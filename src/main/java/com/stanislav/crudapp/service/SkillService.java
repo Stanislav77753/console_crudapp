@@ -28,7 +28,7 @@ public class SkillService {
         javaIOSkillRepository.save(skill);
     }
 
-    public void getAllSkills() throws EmptyFileException {
+    public void lookAllSkills() throws EmptyFileException {
         List<String> allSkillFromFile = javaIOSkillRepository.getSkillsInListString();
         for(String skill: allSkillFromFile){
             System.out.println(skill);
@@ -44,4 +44,8 @@ public class SkillService {
     public Skill getSkillById(Long id) throws EmptyFileException {
         return javaIOSkillRepository.getById(id);
     }
+    public List<Skill> getAllSkills() throws EmptyFileException {
+        return javaIOSkillRepository.getAll();
+    }
+
 }
