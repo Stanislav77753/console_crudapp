@@ -1,0 +1,7 @@
+#folder idea
+.idea/
+.src/
+
+.out/
+
+*.iml
