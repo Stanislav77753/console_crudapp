@@ -10,7 +10,7 @@ import java.util.List;
 
 public class JavaIOAccountRepositoryImpl implements GenericRepository<Account, Long> {
 
-    private String accountFilePath = "src/main/java/com/stanislav/crudapp/resources/accounts.txt";
+    private String accountFilePath = "src/main/resources/accounts.txt";
     private File accounts = new File(accountFilePath);
 
     @Override

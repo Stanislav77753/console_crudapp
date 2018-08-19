@@ -8,7 +8,7 @@ import java.io.*;
 import java.util.*;
 
 public class JavaIOSkillRepositoryImpl implements SkillRepository {
-    private String skillsFilePath = "src/main/java/com/stanislav/crudapp/resources/skills.txt";
+    private String skillsFilePath = "src/main/resources/skills.txt";
     private File skills = new File(skillsFilePath);
 
     @Override

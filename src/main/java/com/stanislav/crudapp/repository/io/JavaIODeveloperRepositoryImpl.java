@@ -10,7 +10,7 @@ import java.io.*;
 import java.util.*;
 
 public class JavaIODeveloperRepositoryImpl implements DeveloperRepository {
-    private String developerFilePath = "src/main/java/com/stanislav/crudapp/resources/developers.txt";
+    private String developerFilePath = "src/main/resources/developers.txt";
     private File developers = new File(developerFilePath);
 
     /**
